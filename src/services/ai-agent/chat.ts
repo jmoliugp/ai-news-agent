@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 
 import { tools } from './tools-descriptions';
 import { config } from '@/utils/config';
-import { processMessage } from '@/utils/chat-utils';
+import { processMessage } from '@/services/ai-agent/chat-utils';
 
 type ChatCompletionMessageParam = OpenAI.ChatCompletionMessageParam;
 

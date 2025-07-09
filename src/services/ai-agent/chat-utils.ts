@@ -1,11 +1,29 @@
 import OpenAI from 'openai';
 
-export function isDefined<T>(value: T | undefined | null): value is T {
-  return value !== undefined && value !== null;
-}
-
 type ChatCompletionMessage = OpenAI.ChatCompletionMessage;
 type ChatCompletionMessageParam = OpenAI.ChatCompletionMessageParam;
+
+export type JsonAcceptable =
+  | 'string'
+  | 'number'
+  | 'boolean'
+  | 'object'
+  | 'array'
+  | 'null';
+
+export type ConvertTypeNameStringLiteralToType<T> = T extends 'number'
+  ? number
+  : T extends 'string'
+    ? string
+    : T extends 'boolean'
+      ? boolean
+      : T extends 'object'
+        ? object
+        : T extends 'array'
+          ? unknown[]
+          : T extends 'null'
+            ? null
+            : never;
 
 /**
  * ChatCompletionMessageParam is for API request
@@ -96,4 +114,12 @@ export function processMessage(message: ChatCompletionMessage) {
 
   // Return message content if no tool calls
   return message.content;
+}
+
+export const isNonEmptyString = (value: unknown): value is string => {
+  return typeof value === 'string' && value.length > 0;
+};
+
+export function isDefined<T>(value: T | undefined | null): value is T {
+  return value !== undefined && value !== null;
 }

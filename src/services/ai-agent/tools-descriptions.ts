@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import {
   ConvertTypeNameStringLiteralToType,
   JsonAcceptable,
-} from '@/utils/type-utils.js';
+} from '@/services/ai-agent/chat-utils';
 
 type ChatCompletionTool = OpenAI.ChatCompletionTool;
 type FunctionDefinition = OpenAI.FunctionDefinition;

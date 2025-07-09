@@ -5,9 +5,8 @@ import { Logger } from '@/utils/log';
 import { StaticPrompts, SystemPrompts, FunctionPrompts } from './prompts';
 import { createUserMessage } from './user-prompt-interface';
 import AvailableFunctions from './tools';
-import { isNonEmptyString } from '@/utils/type-utils';
 import { startChat } from './chat';
-import { isChatEnding } from '@/utils/chat-utils';
+import { isChatEnding, isNonEmptyString } from '@/services/ai-agent/chat-utils';
 
 const log = new Logger('AiAgent');
 
