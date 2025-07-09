@@ -2,7 +2,13 @@
 
 ## Project Overview
 
-FILL IT
+This is an AI agent designed to read and query recent CNN news. The project uses web scraping to extract news content and process it for analysis and queries. It includes functionality for:
+
+- Automated CNN news scraping
+- AI content analysis
+- Recent news query system
+- Structured logging and performance monitoring
+- Robust error handling and retry mechanisms
 
 ## Code Style & Standards
 
@@ -31,7 +37,17 @@ FILL IT
 
 ### Naming Conventions
 
-- **Use English comments** throughout the codebase
+- **ALWAYS use English** for all comments, documentation, variable names, function names, and any code-related text
+- **No Spanish** in code, comments, or documentation - everything must be in English
+- **Use descriptive English names** for variables, functions, classes, and interfaces
+
+### Development Approach
+
+- **Plan first, then execute** - always create a detailed plan of changes before implementing
+- **Seek approval before applying** - present the plan and wait for confirmation before making changes
+- **Make granular changes** - implement one feature or fix at a time
+- **Incremental development** - build features step by step, testing each component
+- **Clear separation** - separate concerns between different modules and services
 
 ### Main Entry Point Structure (`src/index.ts`)
 
@@ -155,10 +171,11 @@ When adding a new scraper:
 
 ### Core Stack
 
-- **TypeScript** - strict typing
-- **Puppeteer** - web scraping
-- **Performance API** - timing
-- **Custom utilities** - logging with chalk for colors
+- **TypeScript** - strict typing and modern JavaScript features
+- **Puppeteer** - web scraping for CNN news extraction
+- **Performance API** - execution timing and performance monitoring
+- **Chalk** - colored logging output for better debugging
+- **Custom utilities** - structured logging system
 
 ### Development Process
 

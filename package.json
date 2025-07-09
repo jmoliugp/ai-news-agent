@@ -38,7 +38,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "chalk": "^5.4.1"
+    "chalk": "^5.4.1",
+    "openai": "^5.8.3",
+    "puppeteer": "^22.0.0"
   },
   "engines": {
     "node": ">=18.0.0",

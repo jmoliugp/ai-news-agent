@@ -7,7 +7,7 @@ const log = new Logger('Main');
 const main = async (): Promise<void> => {
   const start = performance.now();
 
-  log.info('🚀 AI News Scrapping project started!');
+  log.info('🚀 Project started!');
 
   const end = performance.now();
   log.info(`⏱️  Execution time: ${(end - start).toFixed(2)}ms`);
