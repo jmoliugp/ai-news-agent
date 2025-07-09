@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-This is an AI agent designed to read and query recent CNN news. The project uses web scraping to extract news content and process it for analysis and queries. It includes functionality for:
+This is an AI agent designed to read and query recent Google news. The project uses web scraping to extract news content and process it for analysis and queries. It includes functionality for:
 
-- Automated CNN news scraping
+- Automated Google news scraping
 - AI content analysis
 - Recent news query system
 - Structured logging and performance monitoring
@@ -172,7 +172,7 @@ When adding a new scraper:
 ### Core Stack
 
 - **TypeScript** - strict typing and modern JavaScript features
-- **Puppeteer** - web scraping for CNN news extraction
+- **Puppeteer** - web scraping
 - **Performance API** - execution timing and performance monitoring
 - **Chalk** - colored logging output for better debugging
 - **Custom utilities** - structured logging system
