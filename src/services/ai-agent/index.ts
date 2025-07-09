@@ -36,7 +36,7 @@ export const runAgent = async (): Promise<void> => {
         log.warn('No result from the AI agent');
         console.log(StaticPrompts.fallback);
       } else if (isNonEmptyString(result)) {
-        log.info(`Assistant: ${result}`);
+        console.log(`Assistant: ${result}`);
 
         const userPrompt = await createUserMessage();
         messages.push(userPrompt);
