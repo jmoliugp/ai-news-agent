@@ -1,6 +1,6 @@
 import { performance } from 'perf_hooks';
 import puppeteer, { Browser, Page } from 'puppeteer';
-import { Logger } from '../utils/log';
+import { Logger } from '../../utils/log';
 
 const log = new Logger('GoogleNewsScraper');
 

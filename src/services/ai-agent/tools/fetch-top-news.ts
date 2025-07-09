@@ -2,7 +2,10 @@ import {
   ConvertedFunctionParamProps,
   FetchNewsProps,
 } from '../tools-descriptions';
-import { fetchGoogleNews, GoogleNewsOptions } from '../../scrapper-google-news';
+import {
+  fetchGoogleNews,
+  GoogleNewsOptions,
+} from '../../scrappers/scrapper-google-news';
 
 export async function fetchTopNews(
   args: ConvertedFunctionParamProps<FetchNewsProps>,
