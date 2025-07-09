@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "chalk": "^5.4.1",
+    "dotenv": "^16.4.5",
     "openai": "^5.8.3",
     "puppeteer": "^22.0.0"
   },
