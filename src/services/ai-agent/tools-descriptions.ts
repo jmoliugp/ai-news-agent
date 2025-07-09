@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import {
   ConvertTypeNameStringLiteralToType,
   JsonAcceptable,
-} from '../../utils/type-utils.js';
+} from '@/utils/type-utils.js';
 
 type ChatCompletionTool = OpenAI.ChatCompletionTool;
 type FunctionDefinition = OpenAI.FunctionDefinition;
@@ -21,7 +21,7 @@ export enum ToolName {
 type FunctionParametersNarrowed<
   T extends Record<string, PropBase<JsonAcceptable>>,
 > = {
-  type: JsonAcceptable; // basically all the types that JSON can accept
+  type: JsonAcceptable;
   properties: T;
   required: (keyof T)[];
 };
@@ -62,8 +62,8 @@ export type BookActivityProps = {
   number_of_people: PropBase<'number'>;
 };
 
-// Define the function descriptions
-const FunctionDescriptions: Record<ToolName, FunctionDefinition> = {
+// Define the tool descriptions
+const ToolDescriptions: Record<ToolName, FunctionDefinition> = {
   [ToolName.FetchTopNews]: {
     name: ToolName.FetchTopNews,
     description:
@@ -101,9 +101,9 @@ const FunctionDescriptions: Record<ToolName, FunctionDefinition> = {
 };
 
 // Format the function descriptions into tools and export them
-export const tools = Object.values(
-  FunctionDescriptions,
-).map<ChatCompletionTool>(description => ({
-  type: 'function',
-  function: description,
-}));
+export const tools = Object.values(ToolDescriptions).map<ChatCompletionTool>(
+  description => ({
+    type: 'function',
+    function: description,
+  }),
+);
