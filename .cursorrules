@@ -1,0 +1,171 @@
+# Project - Cursor Rules
+
+## Project Overview
+
+FILL IT
+
+## Code Style & Standards
+
+### TypeScript Patterns
+
+- **Always use interfaces** for data structures, especially for scraped content
+- **Proper typing is mandatory** - avoid `any` types
+- **Use const assertions** where appropriate
+- **Prefer async/await** over promises for readability
+
+### Code Quality & Readability
+
+- **Write clean, readable code** - prioritize clarity over cleverness
+- **Keep cognitive complexity low** - break down complex functions into smaller, focused ones
+- **Use descriptive variable names** - avoid abbreviations and single-letter variables
+- **Avoid deep nesting** - use early returns and guard clauses
+- **Comment complex logic** - explain the "why", not the "what"
+- **Consistent formatting** - follow established patterns throughout the codebase
+- **Handle errors gracefully** with try-catch blocks
+
+### File Organization
+
+- **Services directory** (`src/services/`) for modules with complex logic
+- **Utils directory** (`src/utils/`) for shared utilities
+- **Main entry point** (`src/index.ts`) orchestrates services
+
+### Naming Conventions
+
+- **Use English comments** throughout the codebase
+
+### Main Entry Point Structure (`src/index.ts`)
+
+```typescript
+// 1. Imports - performance, services, utilities
+import { performance } from 'perf_hooks';
+import { analyzePost } from './services/ai-analysis';
+import { fetchRecentPosts } from './services/scrapper-ycombinator';
+import { Logger } from './utils/log';
+
+// 2. Logger initialization
+const log = new Logger('Main');
+
+// 3. Main async function
+const main = async (): Promise<void> => {
+  // Performance timing start
+  // Service orchestration
+  // Performance timing end
+};
+
+// 4. Process-level error handlers
+process.on('unhandledRejection', ...);
+process.on('uncaughtException', ...);
+
+// 5. Main execution with error handling
+main().catch(error => { ... });
+```
+
+## Scraping Patterns
+
+### Puppeteer Best Practices
+
+- **Always close browser** after scraping
+- **Use proper selectors** - prefer XPath selectors
+- **Wait for selectors** before interaction
+- **Extract data systematically** - title, description, link, image, author, date, tags
+
+### Performance Tracking
+
+- **Use performance.now()** for timing
+- **Log execution time** with emoji (⏱️)
+- **Monitor at function level** for each service
+- **Format timing** to 2 decimal places
+
+### Logging Standards
+
+- **Use custom log utility** (`src/utils/log.ts`)
+- **Emoji usage** only for most significant logs: 🚀 start, 🎉 success milestones, 💥 fatal errors, ⏱️ timing
+- **Include context** in log messages
+
+#### Essential Logging Patterns
+
+```typescript
+// Function start/end
+log.info('🚀 functionName started');
+log.info(`⏱️  Execution time: ${(end - start).toFixed(2)}ms`);
+
+// Browser operations
+log.info('Launching browser...');
+log.success('Browser closed');
+
+// Progress tracking
+log.info(`Found ${count} items to process`);
+log.success(`Processed ${successful}/${total} items`);
+
+// Error handling
+log.error(`Error processing item ${i}: ${error.message}`);
+log.error(`💥 Fatal error: ${error.message}`);
+```
+
+## Error Handling
+
+### Exception Patterns
+
+- **Try-catch** around individual post parsing
+- **Continue processing** other posts if one fails
+- **Log errors** with context and proper emojis
+- **Null/undefined checks** before processing elements
+
+### Process-Level Handling
+
+- **Unhandled rejection** listeners in main
+- **Uncaught exception** handlers
+- **Exit with code 1** on fatal errors
+- **Always use finally blocks** for resource cleanup
+
+### Error Logging Best Practices
+
+- **Include context** - what operation was being performed
+- **Use proper error types** - check `error instanceof Error`
+- **Provide actionable information** - not just generic messages
+- **Distinguish between recoverable and fatal errors**
+
+## Development Workflow
+
+### Code Organization
+
+- **Keep main function clean** - delegate to services
+- **Proper imports** and exports
+- **Consistent formatting** and indentation
+
+### Testing Considerations
+
+- **Console.log results** for debugging
+- **Performance metrics** for optimization
+- **Error scenarios** should be handled gracefully
+
+## New Scraper Implementation
+
+When adding a new scraper:
+
+1. Create `src/services/scrapper-{source}.ts`
+2. Define interface for post structure
+3. Implement `fetch{Content}` function following logging patterns
+4. Add performance monitoring with proper timing logs
+5. Include comprehensive error handling with structured logging
+6. Update main to use new service
+7. Test with sample data output and verify log output
+
+## Dependencies & Tools
+
+### Core Stack
+
+- **TypeScript** - strict typing
+- **Puppeteer** - web scraping
+- **Performance API** - timing
+- **Custom utilities** - logging with chalk for colors
+
+### Development Process
+
+- **Modular architecture** - separate concerns
+- **Clean interfaces** - define data contracts
+- **Performance first** - monitor execution
+- **Error resilience** - handle failures gracefully
+- **Comprehensive logging** - track every operation
+
+Remember: This project prioritizes clean, maintainable code with proper TypeScript typing, comprehensive error handling, and structured logging. Always test scrapers against live sites, handle layout changes gracefully, and maintain consistent logging patterns for debugging and monitoring.
