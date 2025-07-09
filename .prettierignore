@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Generated files
+*.d.ts.map
+*.js.map
+
+# Config files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Other
+coverage/
+.nyc_output/
+*.tgz
+*.tar.gz 
