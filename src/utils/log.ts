@@ -1,37 +1,45 @@
 import chalk from 'chalk';
 
 export class Logger {
-  private readonly context: string;
+  private context: string | undefined;
 
-  constructor(context: string = '') {
+  constructor(context?: string) {
     this.context = context;
   }
 
-  info(message: string): void {
-    const timestamp = new Date().toISOString();
-    console.log(
-      `${chalk.gray(timestamp)} ${chalk.blue(`[${this.context}]`)} ${message}`,
-    );
+  private formatMessage(level: string, message: string): string {
+    const timestamp = chalk.gray(new Date().toISOString());
+    const contextStr = this.context ? chalk.cyan(` ${this.context}`) : '';
+    return `${timestamp} ${level}${contextStr}: ${message}`;
   }
 
-  success(message: string): void {
-    const timestamp = new Date().toISOString();
+  info(message: string): void {
     console.log(
-      `${chalk.gray(timestamp)} ${chalk.green(`[${this.context}]`)} ${message}`,
+      this.formatMessage(chalk.blue.bold('INFO|'), chalk.white(message)),
     );
   }
 
   error(message: string): void {
-    const timestamp = new Date().toISOString();
     console.error(
-      `${chalk.gray(timestamp)} ${chalk.red(`[${this.context}]`)} ${message}`,
+      this.formatMessage(chalk.red.bold('ERROR|'), chalk.white(message)),
     );
   }
 
   warn(message: string): void {
-    const timestamp = new Date().toISOString();
     console.warn(
-      `${chalk.gray(timestamp)} ${chalk.yellow(`[${this.context}]`)} ${message}`,
+      this.formatMessage(chalk.yellow.bold('WARN|'), chalk.white(message)),
+    );
+  }
+
+  debug(message: string): void {
+    console.debug(
+      this.formatMessage(chalk.magenta.bold('DEBUG|'), chalk.gray(message)),
+    );
+  }
+
+  success(message: string): void {
+    console.log(
+      this.formatMessage(chalk.green.bold('SUCCESS|'), chalk.white(message)),
     );
   }
 }
