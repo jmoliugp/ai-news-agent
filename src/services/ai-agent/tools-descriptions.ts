@@ -16,6 +16,8 @@ type FunctionDefinition = OpenAI.FunctionDefinition;
  */
 export enum ToolName {
   FetchTopNews = 'fetch_top_news',
+  FetchYCombinatorPosts = 'fetch_y_combinator_posts',
+  FetchHackerNews = 'fetch_hacker_news',
 }
 
 type FunctionParametersNarrowed<
@@ -43,6 +45,15 @@ export type FetchNewsProps = {
   maxArticles: PropBase<'number'>;
   category: PropBase;
   searchQuery: PropBase;
+};
+
+export type FetchYCombinatorPostsProps = {
+  maxPosts: PropBase<'number'>;
+};
+
+export type FetchHackerNewsProps = {
+  maxPosts: PropBase<'number'>;
+  page: PropBase<'number'>;
 };
 
 export type GetFarmsProps = {
@@ -97,6 +108,41 @@ const ToolDescriptions: Record<ToolName, FunctionDefinition> = {
       },
       required: [],
     } satisfies FunctionParametersNarrowed<FetchNewsProps>,
+  },
+  [ToolName.FetchYCombinatorPosts]: {
+    name: ToolName.FetchYCombinatorPosts,
+    description:
+      'Fetch recent posts from Y Combinator blog with startup news and insights',
+    parameters: {
+      type: 'object',
+      properties: {
+        maxPosts: {
+          type: 'number',
+          description: 'Maximum number of posts to return. Default: 10',
+        },
+      },
+      required: [],
+    } satisfies FunctionParametersNarrowed<FetchYCombinatorPostsProps>,
+  },
+  [ToolName.FetchHackerNews]: {
+    name: ToolName.FetchHackerNews,
+    description:
+      'Fetch the most important stories from Hacker News front page with rankings, points, and comments',
+    parameters: {
+      type: 'object',
+      properties: {
+        maxPosts: {
+          type: 'number',
+          description: 'Maximum number of stories to return. Default: 10',
+        },
+        page: {
+          type: 'number',
+          description:
+            'Page number to fetch (1 for front page, 2 for second page, etc.). Default: 1',
+        },
+      },
+      required: [],
+    } satisfies FunctionParametersNarrowed<FetchHackerNewsProps>,
   },
 };
 

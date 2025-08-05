@@ -2,13 +2,7 @@
 
 ## Project Overview
 
-This is an AI agent designed to read and query recent Google news. The project uses web scraping to extract news content and process it for analysis and queries. It includes functionality for:
-
-- Automated Google news scraping
-- AI content analysis
-- Recent news query system
-- Structured logging and performance monitoring
-- Robust error handling and retry mechanisms
+FILL_IT
 
 ## Code Style & Standards
 

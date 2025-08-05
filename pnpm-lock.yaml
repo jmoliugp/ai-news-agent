@@ -13,10 +13,13 @@ dependencies:
     version: 16.6.1
   openai:
     specifier: ^5.8.3
-    version: 5.8.3
+    version: 5.8.3(zod@4.0.4)
   puppeteer:
     specifier: ^22.0.0
     version: 22.15.0(typescript@5.8.3)
+  zod:
+    specifier: ^4.0.4
+    version: 4.0.4
 
 devDependencies:
   '@types/node':
@@ -2165,7 +2168,7 @@ packages:
     dependencies:
       wrappy: 1.0.2
 
-  /openai@5.8.3:
+  /openai@5.8.3(zod@4.0.4):
     resolution: {integrity: sha512-IdotKmquCnpouTRvF9xRXVhMx6K5Sc8zkD6Usf+so+NTQ+qiJ8bLSCd7LBb8b/Rof7uYltlSxJhNp+spphKI4Q==}
     hasBin: true
     peerDependencies:
@@ -2176,6 +2179,8 @@ packages:
         optional: true
       zod:
         optional: true
+    dependencies:
+      zod: 4.0.4
     dev: false
 
   /optionator@0.9.4:
@@ -3004,4 +3009,8 @@ packages:
 
   /zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+    dev: false
+
+  /zod@4.0.4:
+    resolution: {integrity: sha512-i+8X+1VC5B3ufKpHJYkp1uACl34n8MA3PNXiayDGmKVqTmiKgqmxSayPQjsYvkGs+DitAMS7U1l4uG6AZYCJGA==}
     dev: false

@@ -93,27 +93,26 @@ export function isChatEnding(
  * @returns the content of the message (string or null) or the function arguments (object)
  */
 export function processMessage(message: ChatCompletionMessage) {
-  // Check if message has tool calls and extract function arguments
-  if (isDefined(message.tool_calls) && message.tool_calls.length !== 0) {
-    return message.tool_calls.map(toolCall => {
-      if (!isDefined(toolCall.function)) {
-        throw new Error('No function found in the tool call');
-      }
-
-      try {
-        return {
-          tool_call_id: toolCall.id,
-          function_name: toolCall.function.name,
-          arguments: JSON.parse(toolCall.function.arguments),
-        };
-      } catch (error) {
-        throw new Error('Invalid JSON in function arguments');
-      }
-    });
+  if (!isDefined(message.tool_calls) || message.tool_calls.length === 0) {
+    return message.content;
   }
 
-  // Return message content if no tool calls
-  return message.content;
+  // Process tool calls and extract function arguments
+  return message.tool_calls.map(toolCall => {
+    if (!isDefined(toolCall.function)) {
+      throw new Error('No function found in the tool call');
+    }
+
+    try {
+      return {
+        tool_call_id: toolCall.id,
+        function_name: toolCall.function.name,
+        arguments: JSON.parse(toolCall.function.arguments),
+      };
+    } catch (error) {
+      throw new Error('Invalid JSON in function arguments');
+    }
+  });
 }
 
 export const isNonEmptyString = (value: unknown): value is string => {

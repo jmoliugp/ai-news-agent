@@ -1,20 +1,15 @@
 import OpenAI from 'openai';
 
-import { tools } from './tools-descriptions';
-import { config } from '@/utils/config';
 import { processMessage } from '@/services/ai-agent/chat-utils';
+import { openaiClient } from '@/services/ai-agent/openai-client';
+import { tools } from './tools-descriptions';
 
 type ChatCompletionMessageParam = OpenAI.ChatCompletionMessageParam;
 
 export const startChat = async (messages: ChatCompletionMessageParam[]) => {
-  const client = new OpenAI({
-    apiKey: config.openaiApiKey,
-  });
-
-  const response = await client.chat.completions.create({
+  const response = await openaiClient.chat.completions.create({
     model: 'gpt-3.5-turbo',
-    top_p: 0.95,
-    temperature: 0.5,
+    temperature: 0.2,
     messages,
     max_tokens: 1024,
     tools,
